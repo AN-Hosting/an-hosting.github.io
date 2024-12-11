@@ -1,0 +1,274 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InfoCard from '../../components/InfoCard.astro';
+import ProgressBar from '../../components/ProgressBar.astro';
+---
+
+<Layout title="DayZ">
+    <div class="hero cyber-border">
+        <h1 class="neon-text">DAYZ<span class="highlight">_DOCS</span></h1>
+        <p class="subtitle">GUIDE DE SURVIE EN ZONE CONTAMINÉE</p>
+    </div>
+
+    <div class="content-grid">
+        <section class="main-content">
+            <InfoCard title="Statistiques Vitales" glowColor="var(--neon-pink)">
+                <div class="stats-grid">
+                    <ProgressBar label="Santé" value={100} max={100} color="var(--neon-pink)" />
+                    <ProgressBar label="Sang" value={5000} max={5000} color="#ff4444" />
+                    <ProgressBar label="Faim" value={80} max={100} color="var(--cyber-yellow)" />
+                    <ProgressBar label="Soif" value={75} max={100} color="var(--neon-blue)" />
+                    <ProgressBar label="Température" value={37} max={41} color="#ff8800" />
+                </div>
+            </InfoCard>
+
+            <InfoCard title="Guide de Démarrage" icon="🎯">
+                <ol class="cyber-list">
+                    <li>Trouvez de l'eau immédiatement (puits, pompes)</li>
+                    <li>Cherchez de la nourriture dans les maisons</li>
+                    <li>Fabriquez des bandages avec des vêtements</li>
+                    <li>Évitez les zombies au début</li>
+                    <li>Dirigez-vous vers l'intérieur des terres</li>
+                </ol>
+            </InfoCard>
+
+            <InfoCard title="Système de Combat" icon="⚔️" glowColor="var(--neon-purple)">
+                <div class="combat-grid">
+                    <div class="combat-section">
+                        <h4>Armes de Mêlée</h4>
+                        <ul>
+                            <li>Hache de Pompier</li>
+                            <li>Batte de Baseball</li>
+                            <li>Pied de Biche</li>
+                            <li>Machette</li>
+                        </ul>
+                    </div>
+                    <div class="combat-section">
+                        <h4>Armes à Feu</h4>
+                        <ul>
+                            <li>Pistolet MK II</li>
+                            <li>Mosin Nagant</li>
+                            <li>M4A1</li>
+                            <li>AKM</li>
+                        </ul>
+                    </div>
+                </div>
+            </InfoCard>
+        </section>
+
+        <aside class="side-content">
+            <InfoCard title="Maladies Courantes" icon="🦠">
+                <ul class="disease-list">
+                    <li>
+                        <span class="disease-name">Choléra</span>
+                        <span class="disease-cure">Tétracycline</span>
+                    </li>
+                    <li>
+                        <span class="disease-name">Grippe</span>
+                        <span class="disease-cure">Repos + Chaleur</span>
+                    </li>
+                    <li>
+                        <span class="disease-name">Infection</span>
+                        <span class="disease-cure">Antibiotiques</span>
+                    </li>
+                </ul>
+            </InfoCard>
+
+            <InfoCard title="Points d'Intérêt" icon="🎯" glowColor="var(--cyber-yellow)">
+                <div class="locations">
+                    <div class="location">
+                        <h4>Bases Militaires</h4>
+                        <ul>
+                            <li>NWAF</li>
+                            <li>Tisy</li>
+                            <li>Zeleno</li>
+                        </ul>
+                    </div>
+                    <div class="location">
+                        <h4>Villes Principales</h4>
+                        <ul>
+                            <li>Cherno</li>
+                            <li>Elektro</li>
+                            <li>Berezino</li>
+                        </ul>
+                    </div>
+                </div>
+            </InfoCard>
+
+            <InfoCard title="Astuces Pro" icon="💡">
+                <ul class="pro-tips">
+                    <li>Utilisez F11 pour le suicide en cas de spawn défavorable</li>
+                    <li>Double-tap 'Z' pour s'accroupir silencieusement</li>
+                    <li>Maintenez 'Tab' pour une vue rapide de l'inventaire</li>
+                    <li>Utilisez ',' et '.' pour pivoter les objets dans l'inventaire</li>
+                </ul>
+            </InfoCard>
+        </aside>
+    </div>
+</Layout>
+
+<style lang="scss">
+    .hero {
+        text-align: center;
+        padding: 3rem 2rem;
+        margin-bottom: 3rem;
+        background: rgba(1, 1, 43, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        letter-spacing: 8px;
+
+        .highlight {
+            color: var(--neon-pink);
+        }
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        letter-spacing: 4px;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .stats-grid {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .cyber-list {
+        list-style: none;
+        counter-reset: cyber-counter;
+
+        li {
+            counter-increment: cyber-counter;
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+
+            &::before {
+                content: counter(cyber-counter);
+                position: absolute;
+                left: 0;
+                color: var(--neon-blue);
+                font-weight: bold;
+                background: rgba(5, 217, 232, 0.1);
+                width: 1.8rem;
+                height: 1.8rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    .combat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .combat-section {
+        h4 {
+            color: var(--neon-purple);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 0.5rem;
+                padding-left: 1rem;
+                border-left: 2px solid var(--neon-purple);
+            }
+        }
+    }
+
+    .disease-list {
+        list-style: none;
+        padding: 0;
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            &:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        .disease-name {
+            color: var(--neon-pink);
+        }
+
+        .disease-cure {
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+        }
+    }
+
+    .locations {
+        .location {
+            margin-bottom: 1.5rem;
+
+            h4 {
+                color: var(--cyber-yellow);
+                margin-bottom: 0.5rem;
+            }
+
+            ul {
+                list-style: none;
+                padding-left: 1rem;
+
+                li {
+                    margin-bottom: 0.3rem;
+                    position: relative;
+
+                    &::before {
+                        content: '>';
+                        position: absolute;
+                        left: -1rem;
+                        color: var(--cyber-yellow);
+                    }
+                }
+            }
+        }
+    }
+
+    .pro-tips {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+
+            &::before {
+                content: '💡';
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+</style>

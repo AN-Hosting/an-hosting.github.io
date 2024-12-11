@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GameCard from '../components/GameCard.astro';
+
+const games = [
+    {
+        title: 'DayZ',
+        description: 'Guides et tutoriels pour survivre dans le monde post-apocalyptique de DayZ',
+        image: '/images/dayz.jpg',
+        href: '/games/dayz'
+    },
+    {
+        title: 'FiveM',
+        description: 'Documentation complète pour QBCore et ESX sur FiveM',
+        image: '/images/fivem.jpg',
+        href: '/games/fivem'
+    },
+    {
+        title: 'SCUM',
+        description: 'Astuces et stratégies pour maîtriser SCUM',
+        image: '/images/scum.jpg',
+        href: '/games/scum'
+    },
+    {
+        title: 'Minecraft',
+        description: 'Tout ce que vous devez savoir sur Minecraft',
+        image: '/images/minecraft.jpg',
+        href: '/games/minecraft'
+    }
+];
+---
+
+<Layout title="Accueil">
+    <div class="hero cyber-border">
+        <h1 class="neon-text">CYBER<span class="highlight">DOCS</span></h1>
+        <p>GUIDES_TUTORIELS_DOCUMENTATION</p>
+    </div>
+    
+    <div class="games-grid">
+        {games.map((game) => (
+            <GameCard {...game} />
+        ))}
+    </div>
+</Layout>
+
+<style lang="scss">
+    .hero {
+        text-align: center;
+        padding: 4rem 2rem;
+        margin-bottom: 4rem;
+        background: rgba(1, 1, 43, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        letter-spacing: 8px;
+        font-weight: 700;
+
+        .highlight {
+            color: var(--neon-pink);
+        }
+    }
+
+    p {
+        font-size: 1.5rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        letter-spacing: 2px;
+    }
+
+    .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+</style>

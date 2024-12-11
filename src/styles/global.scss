@@ -1,0 +1,111 @@
+:root {
+  --neon-pink: #ff2a6d;
+  --neon-blue: #05d9e8;
+  --neon-purple: #7700ff;
+  --cyber-yellow: #ffd300;
+  --dark-bg: #01012b;
+  --darker-bg: #000016;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  
+  --glitch-duration: 3s;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 var(--neon-pink), -0.05em -0.025em 0 var(--neon-blue),
+                -0.025em 0.05em 0 var(--neon-purple);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 var(--neon-pink), -0.05em -0.025em 0 var(--neon-blue),
+                -0.025em 0.05em 0 var(--neon-purple);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 var(--neon-pink), 0.025em 0.025em 0 var(--neon-blue),
+                -0.05em -0.05em 0 var(--neon-purple);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 var(--neon-pink), 0.025em 0.025em 0 var(--neon-blue),
+                -0.05em -0.05em 0 var(--neon-purple);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 var(--neon-pink), 0.05em 0 0 var(--neon-blue),
+                0 -0.05em 0 var(--neon-purple);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 var(--neon-pink), 0.05em 0 0 var(--neon-blue),
+                0 -0.05em 0 var(--neon-purple);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 var(--neon-pink), -0.025em -0.025em 0 var(--neon-blue),
+                -0.025em -0.05em 0 var(--neon-purple);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  font-family: 'Rajdhani', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+  min-height: 100vh;
+}
+
+.neon-text {
+  color: var(--text-primary);
+  text-shadow: 0 0 5px var(--neon-blue),
+               0 0 10px var(--neon-blue),
+               0 0 20px var(--neon-blue),
+               0 0 40px var(--neon-blue);
+  animation: glitch var(--glitch-duration) infinite;
+}
+
+.cyber-border {
+  position: relative;
+  border: 2px solid var(--neon-pink);
+  
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-blue);
+  }
+  
+  &::before {
+    top: -5px;
+    left: -5px;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  &::after {
+    bottom: -5px;
+    right: -5px;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+.grid-bg {
+  background-image: linear-gradient(var(--neon-blue) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--neon-blue) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-color: rgba(1, 1, 43, 0.97);
+  opacity: 0.1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}

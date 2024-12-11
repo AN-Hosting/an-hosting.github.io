@@ -1,0 +1,54 @@
+---
+interface Props {
+    title: string;
+    icon?: string;
+    glowColor?: string;
+}
+
+const { title, icon, glowColor = 'var(--neon-blue)' } = Astro.props;
+---
+
+<div class="info-card cyber-border" style={`--glow-color: ${glowColor}`}>
+    {icon && <span class="icon">{icon}</span>}
+    <h3 class="card-title">{title}</h3>
+    <div class="card-content">
+        <slot />
+    </div>
+</div>
+
+<style lang="scss">
+    .info-card {
+        background: rgba(1, 1, 43, 0.8);
+        padding: 1.5rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+        border-color: var(--glow-color);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(var(--glow-color), 0.3);
+        }
+    }
+
+    .icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+        color: var(--glow-color);
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+        color: var(--glow-color);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+    }
+
+    .card-content {
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+</style>

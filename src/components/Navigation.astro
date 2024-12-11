@@ -1,0 +1,92 @@
+---
+const games = [
+    { name: 'DayZ', href: '/games/dayz' },
+    { name: 'FiveM', href: '/games/fivem' },
+    { name: 'SCUM', href: '/games/scum' },
+    { name: 'Minecraft', href: '/games/minecraft' }
+];
+---
+
+<nav>
+    <div class="nav-content">
+        <a href="/" class="logo neon-text">CYBER<span>DOCS</span></a>
+        <ul class="nav-links">
+            {games.map(game => (
+                <li>
+                    <a href={game.href} class="cyber-link">{game.name}</a>
+                </li>
+            ))}
+        </ul>
+    </div>
+</nav>
+
+<style lang="scss">
+    nav {
+        background: rgba(1, 1, 43, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--neon-blue);
+    }
+
+    .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        text-decoration: none;
+        letter-spacing: 3px;
+
+        span {
+            color: var(--neon-pink);
+        }
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+    }
+
+    .cyber-link {
+        color: var(--text-primary);
+        text-decoration: none;
+        position: relative;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--neon-blue);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+
+            &::before {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        }
+    }
+</style>

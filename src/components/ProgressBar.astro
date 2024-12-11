@@ -1,0 +1,76 @@
+---
+interface Props {
+    value: number;
+    max: number;
+    color?: string;
+    label: string;
+}
+
+const { value, max, color = 'var(--neon-blue)', label } = Astro.props;
+const percentage = (value / max) * 100;
+---
+
+<div class="progress-container">
+    <div class="progress-label">{label}</div>
+    <div class="progress-bar" style={`--progress-color: ${color}`}>
+        <div class="progress-value" style={`width: ${percentage}%`}></div>
+    </div>
+    <div class="progress-text">{value}/{max}</div>
+</div>
+
+<style lang="scss">
+    .progress-container {
+        margin-bottom: 1rem;
+    }
+
+    .progress-label {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .progress-bar {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-value {
+        height: 100%;
+        background: var(--progress-color);
+        position: relative;
+        transition: width 0.3s ease;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                transparent 100%
+            );
+            animation: shine 2s infinite;
+        }
+    }
+
+    .progress-text {
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        text-align: right;
+    }
+
+    @keyframes shine {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+</style>

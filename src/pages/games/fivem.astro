@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+---
+
+<Layout title="FiveM">
+    <h1>Documentation FiveM</h1>
+    
+    <div class="frameworks">
+        <section class="framework">
+            <h2>QBCore</h2>
+            <div class="content">
+                <ul>
+                    <li>Installation et configuration</li>
+                    <li>Système d'inventaire</li>
+                    <li>Jobs et gangs</li>
+                    <li>Économie et boutiques</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="framework">
+            <h2>ESX</h2>
+            <div class="content">
+                <ul>
+                    <li>Installation du framework</li>
+                    <li>Gestion des jobs</li>
+                    <li>Système bancaire</li>
+                    <li>Scripts essentiels</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    h1 {
+        color: rgb(var(--accent-light));
+        margin-bottom: 2rem;
+    }
+
+    .frameworks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .framework {
+        background: #1a1a1a;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    h2 {
+        background: rgba(var(--accent), 0.2);
+        margin: 0;
+        padding: 1rem;
+        color: rgb(var(--accent-light));
+    }
+
+    .content {
+        padding: 1.5rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #333;
+    }
+
+    li:last-child {
+        border-bottom: none;
+    }
+</style>

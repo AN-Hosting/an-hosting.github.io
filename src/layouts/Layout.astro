@@ -1,0 +1,40 @@
+---
+import '../styles/global.scss';
+import Navigation from '../components/Navigation.astro';
+
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Documentation pour différents jeux vidéo" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <meta name="generator" content={Astro.generator} />
+        <title>{title} - CyberDocs</title>
+    </head>
+    <body>
+        <div class="grid-bg"></div>
+        <Navigation />
+        <main>
+            <slot />
+        </main>
+    </body>
+</html>
+
+<style lang="scss">
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        position: relative;
+        z-index: 1;
+    }
+</style>
